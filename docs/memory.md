@@ -1,6 +1,9 @@
 ## Unified Main Memory (BRAM) - 10/10/2026
 The unified memory consists of 64 KiB of FPGA Block RAM, organized as 16.384 words of 32 bits each.
 
+Code: [bram.sv](../rtl/bram.sv)
+Test Bench: [bram_test.sv](../tb/bram_test.sv)
+
 A 32-Bit RISC-V address is divided as follows:
 - Bits [31:16]: Memory region validation
 - Bits [15:2]: 14-bit BRAM word index
