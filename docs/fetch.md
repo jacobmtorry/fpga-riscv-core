@@ -5,8 +5,8 @@
 ## Overview
 The instruction queue is a parameterized, synchronous FIFO (First-In, First-Out) buffer used in the **RISC-V processor**. It temporarily stores fetched instructions and their corresponding program counters (PCs) before they are processed by downstream pipeline stages.
 
-## Code
-[instr_queue.sv](../rtl/instr_queue.sv)
+Code: [instr_queue.sv](../rtl/instr_queue.sv) \
+Testbench: [instr_queue_tb.sv](../tb/instr_queue_tb.sv)
 
 ## Architecture
 - **Depth:** Configurable through the `DEPTH` parameter (default: 8 entries).
@@ -47,4 +47,4 @@ assign do_dequeue = dequeue && !empty;
 - When full, an enqueue request is rejected even if a dequeue is requested simultaneously.
 
 ## Verification
-The instruction queue is verified using a SystemVerilog testbench [instr_queue_tb.sv](../tb/instr_queue_tb.sv) covering reset behavior, enqueue/dequeue operations, full and empty conditions, simultaneous operations, and FIFO ordering.
+The instruction queue is verified using a SystemVerilog testbench covering reset behavior, enqueue/dequeue operations, full and empty conditions, simultaneous operations, and FIFO ordering.
