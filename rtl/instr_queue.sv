@@ -37,7 +37,7 @@ logic [31:0] instr_queue [DEPTH-1:0];
 assign full = (head_ptr == tail_ptr) && dir;
 assign empty = (head_ptr == tail_ptr) && !dir;
 
-assign do_enqueue = enqueue && !full;
+assign do_enqueue = enqueue && (!full || do_dequeue);
 assign do_dequeue = dequeue && !empty;
 
 always_ff @( posedge clk ) begin
@@ -45,6 +45,8 @@ always_ff @( posedge clk ) begin
         dir      <= '0;
         head_ptr <= '0;
         tail_ptr <= '0;
+        pc_queue <= '{default: 0};
+        instr_queue <= '{default: 0};
     end else begin
 
         // only enqueue
