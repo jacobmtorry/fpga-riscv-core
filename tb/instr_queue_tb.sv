@@ -29,7 +29,7 @@ module instr_queue_tb;
         .pc_out(pc_out)
     );
 
-    logic empty, full
+    logic empty, full;
     logic enqueue, dequeue;
     logic [31:0] instr_in, pc_in;
     logic [31:0] instr_out, pc_out;    
@@ -71,16 +71,17 @@ module instr_queue_tb;
         // dequeue test with empty check
         @(negedge clk);
         dequeue = 1'b1;
-        assert (pc_out === 32'h00000000) 
-            else   $display("ERROR: PC mismatch");
-        assert (instr_out === 32'h00000000) 
-            else   $display("ERROR: Instr mismatch");
 
         @(posedge clk);
         #1;
 
+        assert (pc_out === 32'h00000000) 
+            else   $display("ERROR: PC mismatch");
+        assert (instr_out === 32'h00000000) 
+            else   $display("ERROR: Instr mismatch");
         assert (empty)
             else  $display("ERROR: should be empty");
+            
         @(negedge clk);
         dequeue  = 1'b0;
         
